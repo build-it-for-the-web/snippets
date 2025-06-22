@@ -1,0 +1,3 @@
+npm create vue@latest ./
+
+npm install vite-svg-loader --save-dev
