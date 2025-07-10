@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    225deg,
+    rgb(199, 17, 87),
+    rgb(146, 26, 65) 25%,
+    rgb(96, 25, 45) 50%,
+    rgb(50, 19, 26) 75%,
+    rgb(0, 0, 0) 100%
+  );
+}
+
+.loader {
+  --loader-length: 100px;
+  --dot-length: calc(var(--loader-length) * 0.225); /* 22.5px */
+  --dot-offset: calc(var(--loader-length) * 0.175); /* 17.5px */
+
+  --mid-width: var(--dot-length);
+  --mid-height: var(--dot-length);
+  --translate-length: calc(
+    var(--loader-length) - var(--dot-length)
+  ); /* 77.5px */
+  --mid-translate-x: 0px;
+  --mid-translate-y: 0px;
+
+  position: relative;
+  width: var(--loader-length);
+  height: var(--loader-length);
+  transform: rotate(-15deg);
+
+  .circle {
+    position: absolute;
+    width: var(--dot-length);
+    height: var(--dot-length);
+    border-radius: 9999px;
+    animation: circle 2s infinite;
+  }
+
+  .circle-1 {
+    --mid-height: var(--loader-length);
+    --mid-translate-y: var(--translate-length);
+
+    background: #3db88fbf;
+    top: 0;
+    left: var(--dot-offset);
+    z-index: 2;
+  }
+
+  .circle-2 {
+    --mid-height: var(--loader-length);
+    --mid-translate-y: calc(var(--translate-length) * -1);
+
+    background: #e9a920bf;
+    bottom: 0;
+    right: var(--dot-offset);
+    z-index: 4;
+  }
+
+  .circle-3 {
+    --mid-width: var(--loader-length);
+    --mid-translate-x: calc(var(--translate-length) * -1);
+
+    background: #6fcadcbf;
+    top: var(--dot-offset);
+    right: 0;
+    z-index: 3;
+  }
+
+  .circle-4 {
+    --mid-width: var(--loader-length);
+    --mid-translate-x: var(--translate-length);
+
+    background: #e11462bf;
+    bottom: var(--dot-offset);
+    left: 0;
+    z-index: 1;
+  }
+}
+
+@keyframes circle {
+  0% {
+    width: var(--dot-length);
+    height: var(--dot-length);
+    transform: translate(0, 0);
+  }
+
+  35% {
+    width: var(--mid-width);
+    height: var(--mid-height);
+    transform: translate(0, 0);
+  }
+
+  70% {
+    width: var(--dot-length);
+    height: var(--dot-length);
+    transform: translate(var(--mid-translate-x), var(--mid-translate-y));
+  }
+
+  100% {
+    width: var(--dot-length);
+    height: var(--dot-length);
+    transform: translate(0, 0);
+  }
+}
